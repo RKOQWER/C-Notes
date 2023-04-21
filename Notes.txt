@@ -1,0 +1,58 @@
+1. # is called In computer programming, a preprocessor directive is a statement that
+instructs the preprocessor to perform certain actions before the compilation of the
+code.Preprocessor directives are typically used to define macros, include header 
+files, conditionally compile code, and perform other preprocessing tasks.
+
+In C and C++, preprocessor directives begin with the '#' symbol
+ and are typically placed at the beginning of a source file, before the main code.
+
+2. #include<iostream> is used to copy the contents of iostream file in our program.
+
+3. First we compile the code and then we build it.
+
+4. Source code (.cpp )->complie->.obj file->build->.exe file.
+
+5. When cin.get() is called, the program waits for the user to input a single
+ character, and then reads that character from the input stream. 
+The character is stored in a variable of type char. It works like this if it is 
+written at the last of program
+
+6. main is the first function to be called. In a project or program only one main
+function is present.
+
+7. Primitive data types in c++ int ,float , bool , double , char
+
+8. string is not the primitive data type.
+
+9. If the declaration is present the compiler will not give error. To see if the 
+file is actually present or not is the headache of linker.
+
+10. Linker may search in the same directory or some predefined directories.
+
+11.endl is an output manipulator in C++ which is used to insert a newline character and flush 
+the output buffer. This means that any pending output in the buffer will be 
+written to the output stream and the buffer will be cleared. 
+The endl manipulator is often used to ensure that the output is immediately 
+displayed on the console or written to a file.
+
+12. On the other hand, \n is simply an escape sequence that represents a newline character. 
+It is used to move the cursor to the next line without clearing the output 
+buffer.
+
+13. In a project only one main function is present . Other .cpp files are called 
+library files and they contain the definition of the function. Header files (.hpp)
+files have declaration of the functions.
+#include"name of header_file.hpp".
+
+14. In C++, #pragma once is a preprocessor directive that is used to ensure that a 
+header file is included only once in a compilation unit.
+When #pragma once is added to the beginning of a header file, the preprocessor
+checks if it has already been included in the current compilation unit. If it has 
+been included, then the preprocessor skips over the contents of the file. If it 
+has not been included, then the preprocessor includes the contents of the file in 
+the current compilation unit and marks the header file as included.
+Using #pragma once can help to prevent issues that can arise when a header file is 
+accidentally included multiple times, such as multiple definition errors.
+#pragma once is supported by most modern C++ compilers, but it is not part of the 
+C++ standard. Some older compilers may not support it, in which case alternative 
+include guards can be used.
