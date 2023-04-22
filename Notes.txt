@@ -10,7 +10,7 @@ In C and C++, preprocessor directives begin with the '#' symbol
 
 3. First we compile the code and then we build it.
 
-4. Source code (.cpp )->complie->.obj file->build->.exe file.
+4. Source code (.cpp )->complie->.obj file->build->run ->.exe file.
 
 5. When cin.get() is called, the program waits for the user to input a single
  character, and then reads that character from the input stream. 
