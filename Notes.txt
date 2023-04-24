@@ -56,3 +56,5 @@ accidentally included multiple times, such as multiple definition errors.
 #pragma once is supported by most modern C++ compilers, but it is not part of the 
 C++ standard. Some older compilers may not support it, in which case alternative 
 include guards can be used.
+
+15. All numbers except o referred as true and all strings except nullptr or NULL referred as true.
