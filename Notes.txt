@@ -1,4 +1,4 @@
-1. # is called In computer programming, a preprocessor directive is a statement that
+1. # is called preprocessing directive .In computer programming, a preprocessor directive is a statement that
 instructs the preprocessor to perform certain actions before the compilation of the
 code.Preprocessor directives are typically used to define macros, include header 
 files, conditionally compile code, and perform other preprocessing tasks.
@@ -58,3 +58,417 @@ C++ standard. Some older compilers may not support it, in which case alternative
 include guards can be used.
 
 15. All numbers except o referred as true and all strings except nullptr or NULL referred as true.
+
+16. Class is used to define the properties and behaviour of an object
+Behaviour means actions(Functions)
+Properties means data members
+
+
+17. Inheritance is the property of acquiring the properties and behaviour of 
+some other class into a new class.
+
+18. Different types of inheritance
+* Single Inheritance
+* Multiple Inheritance
+* Multilevel Inheritance
+* Hirarchial inheritance
+* Hybrid Inheritance
+
+20.
+
+#include <iostream>
+using namespace std;
+
+// Base class 1
+class Shape {
+public:
+    virtual float area() = 0;
+};
+
+// Derived class 1
+class Rectangle : public Shape {
+private:
+    float length, width;
+
+public:
+    Rectangle(float l, float w) {
+        length = l;
+        width = w;
+    }
+
+    float area() {
+        return length * width;
+    }
+};
+
+// Base class 2
+class Color {
+public:
+    virtual void fill_color() = 0;
+};
+
+// Derived class 2
+class Red : public Color {
+public:
+    void fill_color() {
+        cout << "Red color filled" << endl;
+    }
+};
+
+// Derived class 3 (Multiple Inheritance)
+class RedRectangle : public Rectangle, public Red {
+public:
+    RedRectangle(float l, float w) : Rectangle(l, w) {}
+
+    void display() {
+        cout << "Area of Rectangle: " << area() << endl;
+        fill_color();
+    }
+};
+
+// Main function
+int main() {
+    RedRectangle rr(5, 10);
+    rr.display();
+    return 0;
+}
+
+
+21. Multilevel Inheritance
+
+#include <iostream>
+using namespace std;
+
+// Base class
+class Person {
+public:
+    string name;
+    int age;
+
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+// Derived class 1
+class Student : public Person {
+public:
+    int roll_no;
+
+    void display() {
+        Person::display();
+        cout << "Roll No: " << roll_no << endl;
+    }
+};
+
+// Derived class 2 (Multilevel Inheritance)
+class GradStudent : public Student {
+public:
+    string subject;
+
+    void display() {
+        Student::display();
+        cout << "Subject: " << subject << endl;
+    }
+};
+
+// Main function
+int main() {
+    GradStudent gs;
+    gs.name = "John";
+    gs.age = 25;
+    gs.roll_no = 1234;
+    gs.subject = "Computer Science";
+    gs.display();
+    return 0;
+}
+
+
+
+22. Hirarchial Inheritance
+
+#include <iostream>
+using namespace std;
+
+// Base class
+class Vehicle {
+public:
+    int wheels;
+    string color;
+
+    void display() {
+        cout << "Color: " << color << endl;
+        cout << "Wheels: " << wheels << endl;
+    }
+};
+
+// Derived class 1 (Hierarchical Inheritance)
+class Car : public Vehicle {
+public:
+    int seats;
+
+    void display() {
+        Vehicle::display();
+        cout << "Seats: " << seats << endl;
+    }
+};
+
+// Derived class 2 (Hierarchical Inheritance)
+class Bike : public Vehicle {
+public:
+    string type;
+
+    void display() {
+        Vehicle::display();
+        cout << "Type: " << type << endl;
+    }
+};
+
+// Main function
+int main() {
+    Car c;
+    c.wheels = 4;
+    c.color = "Red";
+    c.seats = 5;
+    c.display();
+
+    Bike b;
+    b.wheels = 2;
+    b.color = "Blue";
+    b.type = "Sports";
+    b.display();
+
+    return 0;
+}
+
+
+23. Availability : Whenever a child class inherits from base class whatever be the 
+visibility of modes of the members of base class and whatever may be the type of
+visibility of the inheritance , all the members of the base class is present in 
+the child class.
+
+24. class B:public A
+* Public member of A behaves as public members of B
+* Protected member of A behaves as protected member of B
+* Private member of A is not accessible to B.
+
+
+25. class B:protected A
+* Public member of A behaves as protected members of B
+* Protected member of A behaves as protected member of B
+* Private member of A is not accessible to B.
+
+26. class B:private  A or class B:A
+* Public member of A behaves as private members of B
+* Protected member of A behaves as private member of B
+* Private member of A is not accessible to B.
+
+
+27. Association means relationship between classes.Different types of association that
+are possible are:-
+* Aggregation
+* Composition 
+* Inheritance
+
+28. In C++, aggregation is a type of association between classes that represents a
+"has-a" relationship, where one class contains an instance of another class as a
+member variable. This relationship is similar to composition, but with aggregation,
+the contained object can exist independently of the containing object.
+
+Example 
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Course {
+public:
+    string name;
+    int credits;
+
+    Course(string name, int credits) {
+        this->name = name;
+        this->credits = credits;
+    }
+};
+
+class Student {
+public:
+    string name;
+    vector<Course*> courses;
+
+    Student(string name) {
+        this->name = name;
+    }
+
+    void addCourse(Course* course) {
+        courses.push_back(course);
+    }
+
+    void display() {
+        cout << "Student Name: " << name << endl;
+        cout << "Enrolled Courses:" << endl;
+        for (auto course : courses) {
+            cout << "- " << course->name << " (" << course->credits << " credits)" << endl;
+        }
+    }
+};
+
+int main() {
+    Course c1("Programming 101", 3);
+    Course c2("Data Structures", 4);
+
+    Student s("John Doe");
+    s.addCourse(&c1);
+    s.addCourse(&c2);
+
+    s.display();
+
+    return 0;
+}
+
+
+In this code, we have a Course class that contains two data members name and credits representing the name and credits of a course.
+
+We then have a Student class that contains a name data member and a vector of Course pointers called courses. The Student class has an addCourse() function to add a course to the list of courses for the student, and a display() function to display the student's name and enrolled courses.
+
+In the main() function, we create two Course objects c1 and c2, and a Student object s with the name "John Doe". We add the two courses to the student's list of courses using the addCourse() function, and then call the display() function to display the student's name and enrolled courses.
+
+This example demonstrates aggregation because a Student object contains a vector of Course pointers, but the Course objects themselves exist independently of the Student object. In other words, the Student object is composed of Course objects, but the Course objects do not depend on the Student object.
+
+
+27. In C++, composition is a type of association between classes that represents a 
+"part-of" relationship, where one class contains an instance of another class as a
+member variable, and the contained object cannot exist independently of the 
+containing object. This relationship is similar to aggregation, but with 
+composition, the contained object is an integral part of the containing object.
+
+Example:-  
+
+#include <iostream>
+using namespace std;
+
+class Engine {
+public:
+    Engine() {
+        cout << "Engine created." << endl;
+    }
+
+    void start() {
+        cout << "Engine started." << endl;
+    }
+
+    void stop() {
+        cout << "Engine stopped." << endl;
+    }
+};
+
+class Car {
+private:
+    Engine engine;
+
+public:
+    Car() {
+        cout << "Car created." << endl;
+    }
+
+    void start() {
+        engine.start();
+    }
+
+    void stop() {
+        engine.stop();
+    }
+};
+
+int main() {
+    Car c;
+    c.start();
+    c.stop();
+
+    return 0;
+}
+
+In this code, we have an Engine class that represents an engine, and a Car class that represents a car. The Car class has a private Engine object called engine, which means that the Engine object is part of the Car object and cannot be accessed from outside the Car object.
+
+In the main() function, we create a Car object c. When we create the Car object, its constructor is called, which in turn creates the Engine object engine. We can then call the start() and stop() functions on the Car object, which in turn call the corresponding functions on the Engine object.
+
+This example demonstrates composition because the Car object contains an Engine object, and the Engine object is an integral part of the Car object. In other words, the Engine object cannot exist independently of the Car object, and it is created and destroyed along with the Car object.
+
+28. Is A relationship is always implemented as public relationship.
+
+29. In C++, there are three types of inheritance: private, public, and protected. Here's when to use each type of inheritance:
+
+Private Inheritance:
+When a derived class is privately inherited from a base class, all public and protected members of the base class become private members of the derived class. This means that the derived class can only access the base class's public and protected members through its own public and protected member functions.
+Private inheritance is used when the derived class wants to implement the functionality of the base class, but it does not want to expose the interface of the base class to the outside world.
+
+Public Inheritance:
+When a derived class is publicly inherited from a base class, all public members of the base class become public members of the derived class, and all protected members of the base class become protected members of the derived class. This means that the derived class can access the public and protected members of the base class directly.
+Public inheritance is used when the derived class wants to inherit the interface and functionality of the base class and also wants to expose it to the outside world.
+
+Protected Inheritance:
+When a derived class is protectedly inherited from a base class, all public and protected members of the base class become protected members of the derived class. This means that the derived class can access the public and protected members of the base class directly, but the outside world cannot.
+Protected inheritance is used when the derived class wants to inherit the functionality of the base class, but it wants to hide the interface of the base class from the outside world and only expose it to its own derived classes.
+
+It's important to note that inheritance should be used judiciously and only when it makes sense. Inheritance can increase the complexity of code and make it harder to understand and maintain, so it should only be used when it simplifies the code and makes it more reusable.
+
+29. If we create the object of child class then the constructor of child class will run. 
+The first step in the constructor of child class calls the constructor of parent class.
+
+30. If copy constructor is not present then compiler will make its own copy constructor.
+
+31. If default constructor is not present then compiler will make its own default constructor.
+
+32. First the destructor of child will run and in the last step of it , it will call the destructor of parent class.
+
+33. Example of copy constructor:-
+
+#include <iostream>
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+
+public:
+    // Constructor
+    Person(string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    // Copy constructor
+    Person(const Person& p) {
+        name = p.name;
+        age = p.age;
+    }
+
+    // Getter functions
+    string getName() {
+        return name;
+    }
+
+    int getAge() {
+        return age;
+    }
+};
+
+int main() {
+    // Create a Person object
+    Person p1("John", 25);
+
+    // Create a copy of the Person object using the copy constructor
+    Person p2 = p1;
+
+    // Output the values of the original and copied objects
+    cout << "Original Person: " << p1.getName() << " " << p1.getAge() << endl;
+    cout << "Copied Person: " << p2.getName() << " " << p2.getAge() << endl;
+
+    return 0;
+}
+
+
+
