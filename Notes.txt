@@ -653,3 +653,116 @@ private:
    double m_height;
 };
 
+42. Exception handling in C++ is a mechanism to handle runtime errors or exceptions that occur during the execution of a program. When an exception occurs, it interrupts the normal flow of the program and transfers control to a special block of code called an exception handler.
+
+Here is an example of exception handling in C++:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+    try {
+        if (b == 0) {
+            throw "Division by zero";
+        }
+        c = a / b;
+        cout << "Result = " << c << endl;
+    } catch (const char* msg) {
+        cerr << "Error: " << msg << endl;
+    }
+    return 0;
+}
+
+In this example, we take two numbers as input from the user and perform division. If the second number is zero, we throw an exception with the message "Division by zero". This exception is caught in the catch block, which displays the error message.
+
+The try block contains the code that may throw an exception, and the catch block contains the code that handles the exception. The catch block takes an argument that specifies the type of exception to be caught. In this example, we are catching a const char* type exception.
+
+C++ also provides the ability to catch all types of exceptions using the ellipsis (...) symbol. Here is an example:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+    try {
+        if (b == 0) {
+            throw "Division by zero";
+        }
+        c = a / b;
+        cout << "Result = " << c << endl;
+    } catch (...) {
+        cerr << "Unknown exception occurred" << endl;
+    }
+    return 0;
+}
+
+
+In this example, we are catching all types of exceptions using the ellipsis symbol. If any exception occurs, the catch block will be executed and display the message "Unknown exception occurred". However, it is generally recommended to catch specific types of exceptions instead of using the ellipsis symbol.
+
+43. In C++, a dynamic constructor is a constructor that is invoked at runtime, i.e., when an object is created dynamically using the new keyword. It is also known as a parameterized constructor, as it takes parameters to initialize the object.
+
+#include <iostream>
+using namespace std;
+
+class Example {
+    int x;
+public:
+    Example(int a) {
+        x = a;
+        cout << "Dynamic constructor called" << endl;
+    }
+    void display() {
+        cout << "x = " << x << endl;
+    }
+    ~Example() {
+        cout << "Destructor called" << endl;
+    }
+};
+
+int main() {
+    Example* obj = new Example(10);
+    obj->display();
+    delete obj;
+    return 0;
+}
+
+42. Dynamic Constuctor: If any data member is having a variable that is created dynamically using new keyword then it the constructor where this variable is being created is called dynamic constructor.
+
+43. Namespace is a container for identifiers. It puts the name of its members in distinct space so that they dont conflict with the names in other namespaces or global namespaces.
+
+44. Namespace declaration doesn't ends with ; like class.
+
+45. Namspace declaration must be done at global level or nested inside another namespace.
+
+46. You can use an alias for namespace
+
+47. Eg:-
+
+#include <iostream>
+
+// creating a namespace called myNamespace
+namespace myNamespace {
+    int x = 10;
+    void display() {
+        std::cout << "x = " << x << std::endl;
+    }
+}
+
+int main() {
+    // accessing the variable and function from the myNamespace
+    std::cout << "Value of x from myNamespace: " << myNamespace::x << std::endl;
+    myNamespace::display();
+    return 0;
+}
+
+
+48. Declaration of namespaces can be done in header files or main.cpp or library files
+
+49. A namespace declaration can be continued and extended over multiple files, they are not redefined or overwritten.
+
+50. 
