@@ -470,5 +470,186 @@ int main() {
     return 0;
 }
 
+34. An object pointer is a pointer that contains the address of an object.
 
+35. this is a local object pointer in every instance memeber function containing 
+address of the caller object.
+
+36. Whether you use or not , this pointer is present in every member function
+
+37. this pointer cannot be modified.
+
+38. Static memeory allocation (STA) This happens in compile time and declaration 
+statement is an example of it.
+
+DMA (Dynamic Memeory Allocation ) happens at runtime and object creation is a part 
+of it.
+
+39. Method Overloading occurs when function in same class have same name but different
+* signature. Function Signature example: void f(int x,int y)
+* Here f(int x,int y) is function signature.It is an example of compile time
+* polymorphism. Operator overloading is also an example of compile time polymorphism
+* 
+* Method overriding is an example of runtime polymorphism. Here function with 
+* same return type and signature is present in both base and dervied class and
+* when we create an object of derived class the function present in derived class
+* is executed.
+* 
+* Method Hiding:- If function with same name but different signature is present
+* in both derived and base class then it is an example of function hiding.
+* If the function is not found in child class then thge compiler also
+* searches for it in the parent class.
+
+40. /*
+* Base class pointer can point to its object as well as the object of child class.
+* But converse is not true.
+* 
+* 
+*/
+
+/*
+#include<iostream>
+
+class A
+{
+public:
+	void f()
+	{
+		std::cout << "A\n";
+	}
+};
+
+class B:public A
+{
+public:
+	void f()
+	{
+		std::cout << "B\n";
+	}
+};
+
+int main()
+{
+	A* obj1;
+	A* obj2;
+	obj1 = new A();
+	obj1->f();// it should print A
+	obj2 = new B();
+	/* Here the object is created in run time . So early binding will happen
+	* and the compiler will think seeing the type of obj2 (declaration is resolved 
+	during compile time) that is an object of A class . So output is A. To force the
+	late binding(or runtime binding or dynamic binding) we need to use make the
+	f() function in class A (parent class) as a virtual function.
+	*/
+	//obj2->f();
+	//return 0;
+//} 
+
+#include<iostream>
+
+class A
+{
+public:
+	virtual void f()
+	{
+		std::cout << "A\n";
+	}
+};
+
+class B :public A
+{
+public:
+	void f()
+	{
+		std::cout << "B\n";
+	}
+};
+
+int main()
+{
+	A* obj1;
+	A* obj2;
+	obj1 = new A();
+	obj1->f();// it should print A
+	obj2 = new B();
+	/* Here the object is created in run time . So early binding will happen
+	* and the compiler will think seeing the type of obj2 (declaration is resolved
+	during compile time) that is an object of A class . So output is A. To force the
+	late binding(or runtime binding or dynamic binding) we need to use make the
+	f() function in class A (parent class) as a virtual function.
+	*/
+	obj2->f();
+	return 0;
+}
+
+/*
+In C++, the vptr (virtual pointer) and vtable (virtual function table) are used to 
+implement dynamic polymorphism through virtual functions. Here are some of the key
+properties of vptr and vtable:
+
+Vptr is a pointer that points to the vtable of the object's class. Every object of
+a class with at least one virtual function has a vptr.
+
+The vtable is a table of function pointers that are used to implement virtual 
+functions. The vtable is created by the compiler at compile time, and it is unique
+to each class with virtual functions.
+
+
+Each virtual function has an entry in the vtable, and each entry in the vtable
+points to the implementation of the corresponding virtual function.
+
+The vtable is shared by all objects of the same class, and it is stored in 
+read-only memory. This means that the vtable is the same for all objects of a 
+class with virtual functions, and it cannot be modified at runtime.
+
+When a virtual function is called on an object, the vptr of the object is used to
+locate the object's vtable, and the appropriate function pointer from the vtable
+is used to call the correct implementation of the virtual function.
+
+The vptr is typically located at the beginning of the object's memory layout, 
+and it is automatically managed by the compiler. The vptr is not visible to the 
+programmer, but its presence and behavior are essential for virtual function 
+dispatch to work correctly.
+
+The use of vptr and vtable incurs a small performance overhead compared to 
+non-virtual functions, but it enables powerful features like polymorphism and 
+inheritance that are essential to object-oriented programming.
+
+Overall, the vptr and vtable are key components of C++'s implementation of
+dynamic polymorphism, which allows objects to exhibit different behavior based 
+on their actual type rather than just their static type. This feature is 
+fundamental to many advanced programming techniques like inheritance, abstract 
+classes, and interfaces.
+*/
+
+41. In C++, an abstract class is a class that cannot be instantiated and is designed to be used as a base class for other classes. An abstract class typically contains at least one pure virtual function, which is a virtual function that has no implementation and is marked with the " = 0 " syntax. A pure virtual function is used to make the class abstract and ensure that any derived class must provide an implementation for the function.
+
+Here's an example of an abstract class in C++:
+
+class Shape {
+public:
+   // Pure virtual function
+   virtual double area() const = 0;
+};
+
+class Circle : public Shape {
+public:
+   Circle(double radius) : m_radius(radius) {}
+   double area() const {
+      return 3.14159 * m_radius * m_radius;
+   }
+private:
+   double m_radius;
+};
+
+class Rectangle : public Shape {
+public:
+   Rectangle(double width, double height) : m_width(width), m_height(height) {}
+   double area() const {
+      return m_width * m_height;
+   }
+private:
+   double m_width;
+   double m_height;
+};
 
